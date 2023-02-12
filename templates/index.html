@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <title>Aplikasi Prediksi Penerimaan Beasiswa</title>
+    </head>
+    <body
+        class="
+            flex flex-col
+            justify-between
+            item-center
+            p-8
+            min-h-screen
+            bg-gradient-to-r
+            from-green-400
+            to-blue-500
+            text-gray-800
+            md:flex-row
+        "
+    >
+        <main class="bg-white p-16 rounded-lg">
+            <h1 class="text-3xl font-bold mb-8">
+                Prediksi Penerimaan Beasiswa Anda:
+            </h1>
+
+            <form
+                action="{{ url_for('predict') }}"
+                method="post"
+                class="flex flex-col"
+            >
+                <label for="SMT1" class="mb-2">RAPORT SMT1</label>
+                <input
+                    type="text"
+                    name="RAPORT SMT1"
+                    placeholder="RAPORT SMT1"
+                    required="required"
+                    class="p-4 bg-gray-100 rounded-md"
+                />
+
+                <label for="SMT2" class="mb-2">RAPORT SMT2</label>
+                <input
+                    type="text"
+                    name="RAPORT SMT2"
+                    placeholder="RAPORT SMT2"
+                    required="required"
+                    class="p-4 bg-gray-100 rounded-md"
+                />
+
+                <label for="SMT3" class="mb-2">RAPORT SMT3</label>
+                <input
+                    type="text"
+                    name="RAPORT SMT3"
+                    placeholder="RAPORT SMT3"
+                    required="required"
+                    class="p-4 bg-gray-100 rounded-md"
+                />
+
+                <label for="SMT4" class="mb-2">RAPORT SMT4</label>
+                <input
+                    type="text"
+                    name="RAPORT SMT4"
+                    placeholder="RAPORT SMT4"
+                    required="required"
+                    class="p-4 bg-gray-100 rounded-md"
+                />
+
+                <label for="SMT5" class="mb-2">RAPORT SMT5</label>
+                <input
+                    type="text"
+                    name="RAPORT SMT5"
+                    placeholder="RAPORT SMT5"
+                    required="required"
+                    class="p-4 bg-gray-100 rounded-md"
+                />
+
+               
+
+                <button
+                    type="submit"
+                    class="
+                        flex
+                        justify-center
+                        align-center
+                        mt-8
+                        p-4
+                        bg-gradient-to-r
+                        from-green-400
+                        to-blue-500
+                        text-white
+                        rounded-md
+                    "
+                >
+                    PREDIKSI SEKARANG
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-arrow-right ml-4"
+                    >
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </form>
+        </main>
+        <section class="mt-8 h-full flex-auto rounded-lg md:mt-0 md:ml-8">
+            <div class="bg-white p-16 rounded-lg">
+                <h1 class="text-2xl mb-8">
+                    Stasus Penerimaan Beasiswa
+                </h1>
+                <h2 class="text-5xl font-bold"> hasil anda :{{ prediction }}</h2>
+                {% if (prediction) !=2%}
+                <div class="mt-8">
+                    <p>SMT1: {{ SMT1 }} </p>
+                    <p>SMT2: {{ SMT2 }} </p>
+                    <p>SMT3: {{ SMT3 }} </p>
+                    <p>SMT4: {{ SMT4 }} </p>
+                    <p>SMT5: {{ SMT5 }} </p>  
+                    <h1 class="text-2xl font-bold">0 = Diterima  1 = Ditolak</h1>
+                </div>
+                {% endif %}
+            </div>
+            <div class="flex justify-around bg-white p-16 rounded-lg mt-8">
+                <img
+                    class="h-24 md:h-28"
+                    src="https://www.unikom.ac.id/img/logo-wcu2022.png"
+                    alt="logo-unikom"
+                />   
+            </div>
+        </section>
+    </body>
+</html>
